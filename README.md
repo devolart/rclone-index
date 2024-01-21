@@ -10,7 +10,7 @@ Keep in mind that there are already some other rclone index repositories out the
 ## Environment variables
 1. `CONFIG_URL`
 
-Raw rclone config URL. You can use https://gist.github.com, create a hidden gist, paste your rclone.conf content, save it, and copy the raw URL of that gist.
+Raw rclone config URL. You can use https://gist.github.com, create a secret gist, paste your rclone.conf content, save it, and copy the raw URL of that gist.
 
 2. `PORT` (Optional)
 
@@ -25,7 +25,36 @@ Username for authentication (leave blank for no auth). It must be paired with `P
 Password for authentication (leave blank for no auth). It must be paired with `USERNAME` variable if you want to add authentication.
 
 ## Deployments
-
+### Docker
+You need to make sure that Docker is installed in your server
+1. Clone this repo
+```
+git clone https://github.com/devolart/rclone-index
+```
+2. Open the cloned repo directory
+```
+cd rclone-index
+```
+3. Build the docker
+```
+sudo docker build . -t rclone-index
+```
+4. Copy this command, modify the environment variables (remove if needed), and run it
+```
+sudo docker run -e CONFIG_URL= -e PORT=8080 -e USERNAME= -e PASSWORD= -p 8080:8080 rclone-index
+```
+### VPS (without root)
+1. Copy these commands and modify the environment variables (remove if needed)
+```
+export CONFIG_URL=
+export PORT=8080
+export USERNAME=
+export PASSWORD=
+```
+2. Run this command
+```
+curl https://raw.githubusercontent.com/devolart/rclone-index/main/noroot.sh | bash
+```
 ### Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/devolart/rclone-index)
 
