@@ -30,7 +30,7 @@ Password for authentication (leave blank for no auth). It must be paired with `U
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/devolart/rclone-index)
 
 ### Scalingo
-[![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://dashboard.scalingo.com/create/app?source=https://github.com/devolart/rclone-index)
+[![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://dashboard.scalingo.com/create/app?source=https://github.com/devolart/rclone-index#main)
 
 ### Render
 Make a new web service, use `https://github.com/devolart/rclone-index` as GitHub template, add environment variables, and deploy it
