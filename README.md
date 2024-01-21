@@ -39,6 +39,6 @@ Make a new web service, use `https://github.com/devolart/rclone-index` as GitHub
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/dEP4Kk)
 
 ### Glitch
-[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button-v2.svg)](https://glitch.com/edit/#!/remix/https://glitch.com/~rclone-index)
+[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button-v2.svg)](https://glitch.com/~rclone-index)
 
-After remixing, edit `.env` file to add environment variables.
+Press remix button in the bottom, and then after remixing, edit `.env` file to add environment variables.
