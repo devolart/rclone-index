@@ -8,13 +8,13 @@ Keep in mind that there are already some other rclone index repositories out the
 3. https://github.com/iamdjsai9999/Multi-Cloud-Index
 
 ## Environment variables
-1. `PORT` (Optional, default: 8080)
-
-Server port you want to use for rclone index.
-
-2. `CONFIG_URL`
+1. `CONFIG_URL`
 
 Raw rclone config URL. You can use https://gist.github.com, create a hidden gist, paste your rclone.conf content, save it, and copy the raw URL of that gist.
+
+2. `PORT` (Optional)
+
+Server port you want to use for rclone index. If you use PaaS, it's most likely that PORT variable has been assigned by default, so you can leave this blank first to check. If you don't specify and the server you use doesn't assign PORT variable automatically, it will use 8080 port.
 
 3. `USERNAME` (Optional)
 
@@ -33,7 +33,7 @@ Password for authentication (leave blank for no auth). It must be paired with `U
 [![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://dashboard.scalingo.com/create/app?source=https://github.com/devolart/rclone-index#main)
 
 ### Render
-Make a new web service, use `https://github.com/devolart/rclone-index` as GitHub template, add environment variables, and deploy it
+Make a new web service, use `https://github.com/devolart/rclone-index` as GitHub template, add environment variables (don't add PORT variable), and deploy it
 
 ### Railway
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/dEP4Kk)
