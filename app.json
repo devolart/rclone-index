@@ -1,0 +1,16 @@
+{
+	"name": "Rclone Index",
+	"description": "Deploy rclone index for your cloud storages easily",
+	"repository": "https://github.com/devolart/rclone-index",
+	"env": {
+		"CONFIG_URL": {
+			"description": "Raw rclone config URL. You can use https://gist.github.com, create a hidden gist, paste your rclone.conf content, save it, and copy the raw URL of that gist."
+		},
+        "USERNAME": {
+			"description": "Username for authentication (leave blank for no auth). It must be paired with PASSWORD variable if you want to add authentication."
+		},
+        "PASSWORD": {
+			"description": "Password for authentication (leave blank for no auth). It must be paired with USERNAME variable if you want to add authentication."
+		}
+	}
+}
