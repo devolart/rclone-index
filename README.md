@@ -71,3 +71,6 @@ Make a new web service, use `https://github.com/devolart/rclone-index` as GitHub
 [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button-v2.svg)](https://glitch.com/~rclone-index)
 
 Press remix button in the bottom, and then after remixing, edit `.env` file to add environment variables.
+
+### Koyeb
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/devolart/rclone-index&branch=main&name=rclone-index)
