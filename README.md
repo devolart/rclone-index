@@ -7,6 +7,9 @@ Keep in mind that there are already some other rclone index repositories out the
 2. https://github.com/culturecloud/rclone-index
 3. https://github.com/iamdjsai9999/Multi-Cloud-Index
 
+## Demo Site
+https://rclone-index.glitch.me/
+
 ## Environment variables
 1. `CONFIG_URL`
 
