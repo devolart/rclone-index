@@ -16,9 +16,14 @@ else
     echo "PORT env var found, using $PORT port"
 fi
 
-if [ -n "${CONFIG_URL}" ]; then
+if [ -n "${CONFIG_BASE64}" ] || [ -n "${CONFIG_URL}" ]; then
     echo "Rclone config URL found"
-    curl $CONFIG_URL > rclone.conf
+
+    if [ -n "${CONFIG_BASE64}" ]; then
+        echo "${CONFIG_BASE64}" | base64 --decode > rclone.conf
+    elif [ -n "${CONFIG_URL}" ]; then
+        curl $CONFIG_URL > rclone.conf
+    fi
     
     contents=$(cat rclone.conf)
 

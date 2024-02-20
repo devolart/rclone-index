@@ -11,19 +11,27 @@ Keep in mind that there are already some other rclone index repositories out the
 https://rclone-index.glitch.me/
 
 ## Environment variables
-1. `CONFIG_URL`
+1. `CONFIG_BASE64`
+
+Select one between `CONFIG_BASE64` or `CONFIG_URL`. `CONFIG_BASE64` is recommended because it doesn't expose your rclone config as a link. Use this if you want maximum security.
+
+Rclone config that has been encoded with base64. You can use https://emn178.github.io/online-tools/base64_encode.html to encode your rclone.conf content, copy the encoded config, and paste it to this variable.
+
+2. `CONFIG_URL`
+
+Select one between `CONFIG_BASE64` or `CONFIG_URL`. `CONFIG_URL` is not recommended because it exposes your config as a link, even though the chance people may stumble into your link is very little as it is a private gist.
 
 Raw rclone config URL. You can use https://gist.github.com, create a secret gist, paste your rclone.conf content, save it, and copy the raw URL of that gist.
 
-2. `PORT` (Optional)
+3. `PORT` (Optional)
 
 Server port you want to use for rclone index. If you use PaaS, it's most likely that PORT variable has been assigned by default, so you can leave this blank first to check. If you don't specify and the server you use doesn't assign PORT variable automatically, it will use 8080 port.
 
-3. `USERNAME` (Optional)
+4. `USERNAME` (Optional)
 
 Username for authentication (leave blank for no auth). It must be paired with `PASSWORD` variable if you want to add authentication.
 
-4. `PASSWORD` (Optional)
+5. `PASSWORD` (Optional)
 
 Password for authentication (leave blank for no auth). It must be paired with `USERNAME` variable if you want to add authentication.
 
