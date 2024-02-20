@@ -52,11 +52,12 @@ sudo docker build . -t rclone-index
 ```
 4. Copy this command, modify the environment variables (remove if needed), and run it
 ```
-sudo docker run -e CONFIG_URL= -e PORT=8080 -e USERNAME= -e PASSWORD= -p 8080:8080 rclone-index
+sudo docker run -e CONFIG_BASE64= -e CONFIG_URL= -e PORT=8080 -e USERNAME= -e PASSWORD= -p 8080:8080 rclone-index
 ```
 ### VPS (without root)
 1. Copy these commands and modify the environment variables (remove if needed)
 ```
+export CONFIG_BASE64=
 export CONFIG_URL=
 export PORT=8080
 export USERNAME=

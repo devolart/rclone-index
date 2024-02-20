@@ -3,6 +3,9 @@
 	"description": "Deploy rclone index for your cloud storages easily",
 	"repository": "https://github.com/devolart/rclone-index",
 	"env": {
+		"CONFIG_BASE64": {
+			"description": "Rclone config that has been encoded with base64. You can use https://emn178.github.io/online-tools/base64_encode.html to encode your rclone.conf content, copy the encoded config, and paste it to this variable."
+		},
 		"CONFIG_URL": {
 			"description": "Raw rclone config URL. You can use https://gist.github.com, create a hidden gist, paste your rclone.conf content, save it, and copy the raw URL of that gist."
 		},
