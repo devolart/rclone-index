@@ -9,7 +9,7 @@ if [ -n "${CONFIG_BASE64}" ] || [ -n "${CONFIG_URL}" ]; then
     echo "Rclone config URL found"
 
     if [ -n "${CONFIG_BASE64}" ]; then
-        echo "${CONFIG_BASE64}" | base64 --decode > rclone.conf
+        echo "${CONFIG_BASE64}" | base64 -d > rclone.conf
     elif [ -n "${CONFIG_URL}" ]; then
         curl $CONFIG_URL > rclone.conf
     fi
