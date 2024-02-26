@@ -4,11 +4,11 @@
 	"repository": "https://github.com/devolart/rclone-index",
 	"env": {
 		"CONFIG_BASE64": {
-			"description": "Rclone config that has been encoded with base64. You can use https://emn178.github.io/online-tools/base64_encode.html to encode your rclone.conf content, copy the encoded config, and paste it to this variable.",
+			"description": "(Choose one between CONFIG_BASE64 or CONFIG_URL) Rclone config that has been encoded with base64. You can use https://emn178.github.io/online-tools/base64_encode.html to encode your rclone.conf content, copy the encoded config, and paste it to this variable.",
 			"required": false
 		},
 		"CONFIG_URL": {
-			"description": "Raw rclone config URL. You can use https://gist.github.com, create a hidden gist, paste your rclone.conf content, save it, and copy the raw URL of that gist.",
+			"description": "(Choose one between CONFIG_BASE64 or CONFIG_URL) Raw rclone config URL. You can use https://gist.github.com, create a hidden gist, paste your rclone.conf content, save it, and copy the raw URL of that gist.",
 			"required": false
 		},
 		"USERNAME": {
