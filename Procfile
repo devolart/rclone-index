@@ -1,1 +1,1 @@
-web: bash noroot.sh
+web: bash start.sh

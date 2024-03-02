@@ -18,6 +18,10 @@
 		"PASSWORD": {
 			"description": "Password for authentication (leave blank for no auth). It must be paired with USERNAME variable if you want to add authentication.",
 			"required": false
+		},
+		"DARK_MODE": {
+			"description": "Set true to enable dark mode, leaving this empty or filling any value other than true will set the template to light mode.",
+			"required": false
 		}
 	}
 }
