@@ -51,10 +51,10 @@ Password for authentication (leave blank for no auth). It must be paired with `U
 Set this to `true` to enable dark mode. Leaving this empty or any value other than `true` will set it to light mode. You can also edit the dark mode's template at `templates/dark.html`. Thanks to [@culturecloud](https://github.com/culturecloud) for the dark mode template (I couldn't find it anywhere else)
 
 Light mode (default):
-![Light mode](https://gist.github.com/assets/125961492/8a39358d-c176-4847-8ed9-44f372439cb1)
+![Light mode](https://cdn.glitch.global/5816d3a4-231f-47f8-8ba8-ef67edfc0885/light%20index.png)
 
 Dark mode:
-![Dark mode](https://gist.github.com/assets/125961492/20280af4-2f6b-4c12-b922-1b9040ece8d4)
+![Dark mode](https://cdn.glitch.global/5816d3a4-231f-47f8-8ba8-ef67edfc0885/dark%20index.png)
 
 ## Deployments
 ### Docker
