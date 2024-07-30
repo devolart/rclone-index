@@ -87,7 +87,7 @@ export DARK_MODE=false
 ```
 2. Run this command
 ```
-curl https://raw.githubusercontent.com/devolart/rclone-index/main/noroot.sh | bash
+curl https://raw.githubusercontent.com/devolart/rclone-index/main/start.sh | bash
 ```
 ### Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/devolart/rclone-index)
