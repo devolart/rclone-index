@@ -1,0 +1,13 @@
+services:
+  rclone-index:
+    build: .
+    container_name: rclone-index
+    ports:
+      - "8080:8080"
+    environment:
+      - CONFIG_BASE64=
+      - CONFIG_URL=
+      - PORT=8080
+      - USERNAME=
+      - PASSWORD=
+      - DARK_MODE=false
