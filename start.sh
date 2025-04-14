@@ -55,11 +55,14 @@ else
     echo -e "[combine]\ntype = alias\nremote = dummy" > rclone.conf
 fi
 
-CMD="${RCLONE_COMMAND} serve http combine: --addr=:$PORT --read-only --config rclone.conf"
+CMD="${RCLONE_COMMAND} serve http combine: --addr=:$PORT --read-only --config rclone.conf \
+    --no-modtime --vfs-cache-mode full --vfs-cache-max-age 1m0s --buffer-size 64M"
+
 if [ -n "${USERNAME}" ] && [ -n "${PASSWORD}" ]; then
     CMD="${CMD} --user=\"$USERNAME\" --pass=\"$PASSWORD\""
     echo "Authentication is set"
 fi
+
 if [ "${DARK_MODE,,}" = "true" ]; then
     CMD="${CMD} --template=templates/dark.html"
     echo "Template is set to dark"
@@ -67,5 +70,9 @@ else
     echo "Template is set to light"
 fi
 
-echo "Running rclone index"
+# Show the full command that will be executed
+echo "Running command:"
+echo "$CMD"
+
+# Execute the command
 eval $CMD
