@@ -1,26 +1,3 @@
-<!-- 
-    This code is picked from:
-    https://github.com/culturecloud/rclone-index/blob/main/templates/index.html
-
-    Credits: https://github.com/culturecloud
- -->
-
-<!-- 
-// Copyright 2015 Matthew Holt and The Caddy Authors
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License. 
-Modifications:  Adapted to rclone markup -->
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,361 +5,352 @@ Modifications:  Adapted to rclone markup -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="google" content="notranslate">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-* { padding: 0; margin: 0; }
+:root {
+	--font-family-primary: 'Roboto', sans-serif;
+	--text-primary: #e8eaed;
+	--text-secondary: #9aa0a6;
+	--text-on-accent: #202124;
+	--background-primary: #121212;
+	--background-secondary: rgba(32, 33, 36, 0.8);
+	--background-tertiary: rgba(0, 0, 0, 0.2);
+	--border-primary: rgba(255, 255, 255, 0.1);
+	--border-secondary: rgba(255, 255, 255, 0.05);
+	--accent-primary: #8ab4f8;
+	--accent-primary-hover: #9ac0f9;
+	--icon-primary: #9aa0a6;
+}
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
 body {
-	font-family: monospace;
-	text-rendering: optimizespeed;
-    color: white;
-	background-color: #272B30;
+	font-family: var(--font-family-primary);
+	color: var(--text-primary);
+	background-color: var(--background-primary);
+	background-image: url('/static/background.png');
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	padding: 20px;
+}
+.container {
+	width: 100%;
+	max-width: 900px;
+	background: var(--background-secondary);
+	backdrop-filter: blur(20px);
+	border-radius: 12px;
+	border: 1px solid var(--border-primary);
+	box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+	overflow: hidden;
 }
 a {
-	color: white;
+	color: var(--accent-primary);
 	text-decoration: none;
 }
-header,
-#summary {
-	padding-left: 5%;
-	padding-right: 5%;
-}
-th:first-child,
-td:first-child {
-	width: 1%; /* tighter for mobile */
-}
-th:last-child,
-td:last-child {
-	width: 1%; /* tighter for mobile */
+a:hover {
+	text-decoration: underline;
 }
 header {
-	padding-top: 25px;
-	padding-bottom: 15px;
-	background-color: #3A3F44;
+	padding: 20px 30px;
+	border-bottom: 1px solid var(--border-primary);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#settings-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 5px;
+}
+#settings-button .icon {
+	fill: var(--text-secondary);
+	transition: fill 0.3s;
+}
+#settings-button:hover .icon {
+	fill: var(--text-primary);
+}
+#settings-panel {
+	padding: 20px 30px;
+	border-bottom: 1px solid var(--border-primary);
+	background-color: var(--background-tertiary);
+}
+#settings-panel.hidden {
+	display: none;
+}
+#settings-panel h3 {
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: var(--text-primary);
+}
+.theme-buttons {
+	display: flex;
+	gap: 10px;
+}
+.theme-button {
+	padding: 8px 12px;
+	border: 1px solid var(--border-primary);
+	border-radius: 8px;
+	font-size: 14px;
+	background-color: transparent;
+	color: var(--text-primary);
+	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s;
+}
+.theme-button:hover, .theme-button.active {
+	background-color: var(--accent-primary);
+	color: var(--text-on-accent);
+	border-color: var(--accent-primary);
 }
 h1 {
-	font-size: 20px;
-	font-weight: bold;
+	font-size: 24px;
+	font-weight: 700;
 	white-space: nowrap;
 	overflow-x: hidden;
 	text-overflow: ellipsis;
-}
-h1 a {
-	margin: 0 4px;
-}
-h1 a:hover {
-	text-decoration: underline;
-}
-h1 a:first-child {
-	margin: 0;
+	color: var(--text-primary);
 }
 main {
 	display: block;
+	padding: 20px 30px;
 }
 .meta {
-	font-size: 12px;
-	border-bottom: none;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-.meta-item {
-	margin-right: 1em;
+	padding-bottom: 20px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 }
 #filter {
-	padding: 4px;
-	border: 1px solid;
+	padding: 10px 15px;
+	border: 1px solid var(--border-primary);
+	border-radius: 8px;
+	font-size: 14px;
+	background-color: var(--background-tertiary);
+	color: var(--text-primary);
+	flex-grow: 1;
+}
+.filter-controls {
+	display: flex;
+	gap: 10px;
+	margin-left: 10px;
+}
+select {
+	padding: 10px 15px;
+	border: 1px solid var(--border-primary);
+	border-radius: 8px;
+	font-size: 14px;
+	background-color: var(--background-tertiary);
+	color: var(--text-primary);
+}
+#filter:focus, select:focus {
+	outline: none;
+	border-color: var(--accent-primary);
+	box-shadow: 0 0 0 2px rgba(138, 180, 248, 0.5);
 }
 table {
 	width: 100%;
 	border-collapse: collapse;
 }
-tr {
-	border-bottom: 1px dashed;
-}
-tbody tr:hover {
-	background-color: #1C1E22;
-}
 th,
 td {
 	text-align: left;
-	padding: 10px 2px; /* Changed from 0 to 2 */
+	padding: 15px 0;
+	font-size: 14px;
 }
 th {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	font-size: 16px;
-	white-space: nowrap;
+	font-weight: 700;
+	color: var(--text-secondary);
+	border-bottom: 1px solid var(--border-primary);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
 }
-th svg {
-	vertical-align: middle;
+tr {
+	border-bottom: 1px solid var(--border-secondary);
 }
-td {
-	white-space: nowrap;
-	font-size: 15px;
+tbody tr:last-child {
+	border-bottom: none;
 }
-
-a:hover, h1 a:hover {
-	text-decoration: none;
+tbody tr:hover {
+	background-color: var(--border-secondary);
 }
-
-td:nth-child(2) {
-	width: 80%;
-}
-td:nth-child(3) {
-	padding: 0 20px 0 20px;
-}
-th:nth-child(4),
-td:nth-child(4) {
-	text-align: right;
-}
-td:nth-child(2) svg {
-	position: absolute;
-}
-td .name,
-td .goup {
-	margin-left: 1.75em;
-	word-break: break-all;
-	overflow-wrap: break-word;
-	white-space: pre-wrap;
+.name {
+	font-weight: 500;
 }
 .icon {
-	margin-right: 5px;
+	margin-right: 15px;
+	vertical-align: middle;
+	fill: var(--icon-primary);
 }
-.icon.sort {
-	display: inline-block;
-	width: 1em;
-	height: 1em;
-	position: relative;
-	top: .2em;
+.theme-light {
+	--text-primary: #202124;
+	--text-secondary: #5f6368;
+	--text-on-accent: #ffffff;
+	--background-primary: #f8f9fa;
+	--background-secondary: rgba(255, 255, 255, 0.8);
+	--background-tertiary: rgba(0, 0, 0, 0.05);
+	--border-primary: rgba(0, 0, 0, 0.1);
+	--border-secondary: rgba(0, 0, 0, 0.05);
+	--accent-primary: #1a73e8;
+	--accent-primary-hover: #287ae6;
+	--icon-primary: #5f6368;
 }
-.icon.sort .top {
-	position: absolute;
-	left: 0;
-	top: -1px;
+.theme-blue {
+	--text-primary: #ffffff;
+	--text-secondary: #bdc1c6;
+	--text-on-accent: #ffffff;
+	--background-primary: #192a56;
+	--background-secondary: rgba(4, 30, 66, 0.8);
+	--background-tertiary: rgba(0, 0, 0, 0.2);
+	--border-primary: rgba(255, 255, 255, 0.1);
+	--border-secondary: rgba(255, 255, 255, 0.05);
+	--accent-primary: #82aaff;
+	--accent-primary-hover: #92baff;
+	--icon-primary: #bdc1c6;
 }
-.icon.sort .bottom {
-	position: absolute;
-	bottom: -1px;
-	left: 0;
+.goup {
+	font-weight: 700;
 }
-footer {
-	padding: 40px 20px;
-	font-size: 12px;
-	text-align: center;
-}
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+	body {
+		padding: 10px;
+	}
+	header, main {
+		padding: 15px;
+	}
 	.hideable {
 		display: none;
 	}
-	td:nth-child(2) {
-		width: auto;
+	h1 {
+		font-size: 20px;
 	}
-	th:nth-child(3),
-	td:nth-child(3) {
-		padding-right: 5%;
-		text-align: right;
+	#filter, #jdownloader {
+		font-size: 12px;
+		padding: 8px 12px;
 	}
-	h1 a {
-		margin: 0;
+}
+@media (max-width: 480px) {
+	.meta {
+		flex-direction: column;
+		align-items: stretch;
 	}
 	#filter {
-		max-width: 100px;
+		margin-bottom: 10px;
+	}
+	.filter-controls {
+		margin-left: 0;
+		flex-direction: column;
+	}
+	th, td {
+		padding: 10px 0;
 	}
 }
 </style>
 	</head>
-	<body onload='filter();toggle("order");changeSize()'>
+	<body onload='filter();toggle("order");changeSize();colorHeader();'>
 		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="0" width="0" style="position: absolute;">
 			<defs>
-				<!-- Folder -->
-				<g id="folder" fill-rule="nonzero" fill="none">
-					<path d="M285.22 37.55h-142.6L110.9 0H31.7C14.25 0 0 16.9 0 37.55v75.1h316.92V75.1c0-20.65-14.26-37.55-31.7-37.55z" fill="#FFA000"/>
-					<path d="M285.22 36H31.7C14.25 36 0 50.28 0 67.74v158.7c0 17.47 14.26 31.75 31.7 31.75H285.2c17.44 0 31.7-14.3 31.7-31.75V67.75c0-17.47-14.26-31.75-31.7-31.75z" fill="#FFCA28"/>
+				<g id="folder" fill="#5f6368">
+					<path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"></path>
 				</g>
-				<g id="folder-shortcut" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-					<g id="folder-shortcut-group" fill-rule="nonzero">
-						<g id="folder-shortcut-shape">
-							<path d="M285.224876,37.5486902 L142.612438,37.5486902 L110.920785,0 L31.6916529,0 C14.2612438,0 0,16.8969106 0,37.5486902 L0,112.646071 L316.916529,112.646071 L316.916529,75.0973805 C316.916529,54.4456008 302.655285,37.5486902 285.224876,37.5486902 Z" id="Shape" fill="#FFA000"></path>
-							<path d="M285.224876,36 L31.6916529,36 C14.2612438,36 0,50.2838568 0,67.7419039 L0,226.451424 C0,243.909471 14.2612438,258.193328 31.6916529,258.193328 L285.224876,258.193328 C302.655285,258.193328 316.916529,243.909471 316.916529,226.451424 L316.916529,67.7419039 C316.916529,50.2838568 302.655285,36 285.224876,36 Z" id="Shape" fill="#FFCA28"></path>
-						</g>
-						<path d="M126.154134,250.559184 C126.850974,251.883673 127.300549,253.006122 127.772602,254.106122 C128.469442,255.206122 128.919016,256.104082 129.638335,257.002041 C130.559962,258.326531 131.728855,259 133.100057,259 C134.493737,259 135.415364,258.55102 136.112204,257.67551 C136.809044,257.002041 137.258619,255.902041 137.258619,254.577551 C137.258619,253.904082 137.258619,252.804082 137.033832,251.457143 C136.786566,249.908163 136.561779,249.032653 136.561779,248.583673 C136.089726,242.814286 135.864939,237.920408 135.864939,233.273469 C135.864939,225.057143 136.786566,217.514286 138.180246,210.846939 C139.798713,204.202041 141.889234,198.634694 144.429328,193.763265 C147.216689,188.869388 150.678411,184.873469 154.836973,181.326531 C158.995535,177.779592 163.626149,174.883673 168.481552,172.661224 C173.336954,170.438776 179.113983,168.665306 185.587852,167.340816 C192.061722,166.218367 198.760378,165.342857 205.481514,164.669388 C212.18017,164.220408 219.598146,163.995918 228.162535,163.995918 L246.055591,163.995918 L246.055591,195.514286 C246.055591,197.736735 246.752431,199.510204 248.370899,201.059184 C250.214153,202.608163 252.079886,203.506122 254.372715,203.506122 C256.463236,203.506122 258.531277,202.608163 260.172223,201.059184 L326.102289,137.797959 C327.720757,136.24898 328.642384,134.47551 328.642384,132.253061 C328.642384,130.030612 327.720757,128.257143 326.102289,126.708163 L260.172223,63.4469388 C258.553756,61.8979592 256.463236,61 254.395194,61 C252.079886,61 250.236632,61.8979592 248.393377,63.4469388 C246.77491,64.9959184 246.07807,66.7693878 246.07807,68.9918367 L246.07807,100.510204 L228.162535,100.510204 C166.863084,100.510204 129.166282,117.167347 115.274437,150.459184 C110.666301,161.54898 108.350993,175.310204 108.350993,191.742857 C108.350993,205.279592 113.903236,223.912245 124.760454,247.438776 C125.00772,248.112245 125.457294,249.010204 126.154134,250.559184 Z" id="Shape" fill="#FFFFFF" transform="translate(218.496689, 160.000000) scale(-1, 1) translate(-218.496689, -160.000000) "></path>
-					</g>
+				<g id="file" fill="#5f6368">
+					<path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM13 9V3.5L18.5 9H13z"></path>
 				</g>
-				<!-- File -->
-				<g id="file" stroke="#000" stroke-width="25" fill="#FFF" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M13 24.12v274.76c0 6.16 5.87 11.12 13.17 11.12H239c7.3 0 13.17-4.96 13.17-11.12V136.15S132.6 13 128.37 13H26.17C18.87 13 13 17.96 13 24.12z"/>
-					<path d="M129.37 13L129 113.9c0 10.58 7.26 19.1 16.27 19.1H249L129.37 13z"/>
-				</g>
-				<g id="file-shortcut" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-					<g id="file-shortcut-group" transform="translate(13.000000, 13.000000)">
-						<g id="file-shortcut-shape" stroke="#000000" stroke-width="25" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M0,11.1214886 L0,285.878477 C0,292.039924 5.87498876,296.999983 13.1728373,296.999983 L225.997983,296.999983 C233.295974,296.999983 239.17082,292.039942 239.17082,285.878477 L239.17082,123.145388 C239.17082,123.145388 119.58541,2.84217094e-14 115.369423,2.84217094e-14 L13.1728576,2.84217094e-14 C5.87500907,-1.71479982e-05 0,4.96022995 0,11.1214886 Z" id="rect1171"></path>
-							<path d="M116.37005,0 L116,100.904964 C116,111.483663 123.258008,120 132.273377,120 L236,120 L116.37005,0 L116.37005,0 Z" id="rect1794"></path>
-						</g>
-						<path d="M47.803141,294.093878 C48.4999811,295.177551 48.9495553,296.095918 49.4216083,296.995918 C50.1184484,297.895918 50.5680227,298.630612 51.2873415,299.365306 C52.2089688,300.44898 53.3778619,301 54.7490634,301 C56.1427436,301 57.0643709,300.632653 57.761211,299.916327 C58.4580511,299.365306 58.9076254,298.465306 58.9076254,297.381633 C58.9076254,296.830612 58.9076254,295.930612 58.6828382,294.828571 C58.4355724,293.561224 58.2107852,292.844898 58.2107852,292.477551 C57.7387323,287.757143 57.5139451,283.753061 57.5139451,279.95102 C57.5139451,273.228571 58.4355724,267.057143 59.8292526,261.602041 C61.44772,256.165306 63.5382403,251.610204 66.0783349,247.62449 C68.8656954,243.620408 72.3274172,240.35102 76.4859792,237.44898 C80.6445412,234.546939 85.2751561,232.177551 90.1305582,230.359184 C94.9859603,228.540816 100.76299,227.089796 107.236859,226.006122 C113.710728,225.087755 120.409385,224.371429 127.13052,223.820408 C133.829177,223.453061 141.247152,223.269388 149.811542,223.269388 L167.704598,223.269388 L167.704598,249.057143 C167.704598,250.87551 168.401438,252.326531 170.019905,253.593878 C171.86316,254.861224 173.728893,255.595918 176.021722,255.595918 C178.112242,255.595918 180.180284,254.861224 181.82123,253.593878 L247.751296,201.834694 C249.369763,200.567347 250.291391,199.116327 250.291391,197.297959 C250.291391,195.479592 249.369763,194.028571 247.751296,192.761224 L181.82123,141.002041 C180.202763,139.734694 178.112242,139 176.044201,139 C173.728893,139 171.885639,139.734694 170.042384,141.002041 C168.423917,142.269388 167.727077,143.720408 167.727077,145.538776 L167.727077,171.326531 L149.811542,171.326531 C88.5120908,171.326531 50.8152886,184.955102 36.9234437,212.193878 C32.3153075,221.267347 30,232.526531 30,245.971429 C30,257.046939 35.5522422,272.291837 46.4094607,291.540816 C46.6567266,292.091837 47.1063009,292.826531 47.803141,294.093878 Z" id="Shape-Copy" fill="#000000" fill-rule="nonzero" transform="translate(140.145695, 220.000000) scale(-1, 1) translate(-140.145695, -220.000000) "></path>
-					</g>
-				</g>
-				<!-- Up arrow -->
-				<g id="up-arrow" fill="white" transform="translate(-279.22 -208.12)">
-					<path transform="matrix(.22413 0 0 .12089 335.67 164.35)" stroke-width="0" d="m-194.17 412.01h-28.827-28.827l14.414-24.965 14.414-24.965 14.414 24.965z"/>
-				</g>
-				<!-- Down arrow -->
-				<g id="down-arrow" fill="white" transform="translate(-279.22 -208.12)">
-					<path transform="matrix(.22413 0 0 -.12089 335.67 257.93)" stroke-width="0" d="m-194.17 412.01h-28.827-28.827l14.414-24.965 14.414-24.965 14.414 24.965z"/>
+				<g id="settings" fill="#5f6368">
+					<path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"></path>
 				</g>
 			</defs>
 		</svg>
-		<header>
-			<h1>
-				{{range $i, $crumb := .Breadcrumb}}<a href="{{html $crumb.Link}}">{{html $crumb.Text}}</a>{{if ne $i 0}}/{{end}}{{end}}
-			</h1>
-		</header>
-		<main>
-			<div class="meta">
-				<div id="summary">
-					<span class="meta-item"><input type="text" placeholder="filter" id="filter" onkeyup='filter()'></span>
+		<div class="container">
+			<header>
+				<h1>
+					{{range $i, $crumb := .Breadcrumb}}<a href="{{html $crumb.Link}}">{{html $crumb.Text}}</a>{{if ne $i 0}}/{{end}}{{end}}
+				</h1>
+				<button id="settings-button" title="Settings">
+					<svg class="icon" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#settings"></use></svg>
+				</button>
+			</header>
+			<div id="settings-panel" class="hidden">
+				<h3>Theme</h3>
+				<div class="theme-buttons">
+					<button class="theme-button" data-theme="dark">Dark</button>
+					<button class="theme-button" data-theme="light">Light</button>
+					<button class="theme-button" data-theme="blue">Blue</button>
 				</div>
 			</div>
-			<div class="listing">
-				<table aria-describedby="summary">
-					<thead>
-					<tr>
-						<th></th>
-						<th>
-							<a href="?sort=namedirfirst&order=asc" class="icon sort order"><svg class="top" width="1em" height=".5em" version="1.1" viewBox="0 0 12.922194 6.0358899"><use xlink:href="#up-arrow"></use></svg><svg class="bottom" width="1em" height=".5em" version="1.1" viewBox="0 0 12.922194 6.0358899"><use xlink:href="#down-arrow"></use></svg></a>
-							
-							<a href="?sort=name&order=asc" class="order">Name</a>
-						</th>
-						<th>
-							<a href="?sort=size&order=asc" class="order">Size</a>
-						</th>
-						<th class="hideable">
-							<a href="?sort=time&order=asc" class="order">Modified</a>
-						</th>
-						<th class="hideable"></th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td></td>
-						<td>
-							<a href="..">
-								<span class="goup">Go up</span>
-							</a>
-						</td>
-						<td>&mdash;</td>
-						<td class="hideable">&mdash;</td>
-						<td class="hideable"></td>
-					</tr>
-					{{- range .Entries}}
-					<tr class="file">
-                        <td></td>
-						<td>
+			<main>
+				<div class="meta">
+					<input type="text" placeholder="Filter files" id="filter" onkeyup='filter()'>
+					<div class="filter-controls">
+						<select id="type-filter" onchange="filter()">
+							<option value="all">All Types</option>
+							<option value="folders">Folders</option>
+							<option value="images">Images</option>
+							<option value="documents">Documents</option>
+							<option value="videos">Videos</option>
+						</select>
+						<select id="size-filter" onchange="filter()">
+							<option value="all">All Sizes</option>
+							<option value="small">&lt; 1MB</option>
+							<option value="medium">1-10MB</option>
+							<option value="large">&gt; 10MB</option>
+						</select>
+					</div>
+				</div>
+				<div class="listing">
+					<table aria-describedby="summary">
+						<thead>
+						<tr>
+							<th><a href="?sort=name&order=asc" class="order">Name</a></th>
+							<th><a href="?sort=size&order=asc" class="order">Size</a></th>
+							<th class="hideable"><a href="?sort=time&order=asc" class="order">Modified</a></th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>
+								<a href="..">
+									<span class="goup">Go up</span>
+								</a>
+							</td>
+							<td>&mdash;</td>
+							<td class="hideable">&mdash;</td>
+						</tr>
+						{{- range .Entries}}
+						{{- $ext := ""}}
+						{{- if not .IsDir}}{{with $dot := findLast "." .Leaf}}{{if ne $dot -1}}{{$ext = substr .Leaf (add $dot 1) | lower}}{{end}}{{end}}{{- end}}
+						<tr class="file" data-extension="{{$ext}}" data-size-bytes="{{.Size}}">
+							<td>
+								{{- if .IsDir}}
+								<svg class="icon" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#folder"></use></svg>
+								{{- else}}
+								<svg class="icon" width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#file"></use></svg>
+								{{- end}}
+								<a href="{{html .URL}}"><span class="name">{{html .Leaf}}</span></a>
+							</td>
 							{{- if .IsDir}}
-							<svg width="1.5em" height="1em" version="1.1" viewBox="0 0 317 259"><use xlink:href="#folder"></use></svg>
+							<td data-order="-1">&mdash;</td>
 							{{- else}}
-							<svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#file"></use></svg>
+							<td data-order="{{.Size}}"><size>{{.Size}}</size></td>
 							{{- end}}
-							<a href="{{html .URL}}"><span class="name">{{html .Leaf}}</span></a>
-						</td>
-						{{- if .IsDir}}
-						<td data-order="-1">&mdash;</td>
-						{{- else}}
-						<td data-order="{{.Size}}"><size>{{.Size}}</size></td>
+							{{- if .ModTime | afterEpoch }}
+							<td class="hideable"><time datetime="{{.ModTime }}">{{.ModTime }}</time></td>
+							{{- else}}
+							<td class="hideable">—</td>
+							{{- end}}
+						</tr>
 						{{- end}}
-						{{- if .ModTime | afterEpoch }}
-						<td class="hideable"><time datetime="{{.ModTime }}">{{.ModTime }}</time></td>
-						{{- else}}
-						<td class="hideable">—</td>
-						{{- end}}
-						<td class="hideable"></td>
-					</tr>
-					{{- end}}
-					</tbody>
-				</table>
-			</div>
-		</main>
-		<script>
-			var filterEl = document.getElementById('filter');
-			filterEl.focus();
-			function filter() {
-				var q = filterEl.value.trim().toLowerCase();
-				var elems = document.querySelectorAll('tr.file');
-				elems.forEach(function(el) {
-					if (!q) {
-						el.style.display = '';
-						return;
-					}
-					var nameEl = el.querySelector('.name');
-					var nameVal = nameEl.textContent.trim().toLowerCase();
-					if (nameVal.indexOf(q) !== -1) {
-						el.style.display = '';
-					} else {
-						el.style.display = 'none';
-					}
-				});
-			}
-			function localizeDatetime(e, index, ar) {
-				if (e.textContent === undefined) {
-					return;
-				}
-				var d = new Date(e.getAttribute('datetime'));
-				if (isNaN(d)) {
-					d = new Date(e.textContent);
-					if (isNaN(d)) {
-						return;
-					}
-				}
-				e.textContent = d.toLocaleString([], {day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit"});
-			}
-			var timeList = Array.prototype.slice.call(document.getElementsByTagName("time"));
-			timeList.forEach(localizeDatetime);
-
-			var getUrlParameter = function getUrlParameter(sParam) {
-				var sPageURL = window.location.search.substring(1),
-				sURLVariables = sPageURL.split('&'),
-				sParameterName,
-				i;
-
-				for (i = 0; i < sURLVariables.length; i++) {
-					sParameterName = sURLVariables[i].split('=');
-
-					if (sParameterName[0] === sParam) {
-						return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-					}
-				}
-			};
-			function toggle(className){
-				var order = getUrlParameter('order');
-				var elements = document.getElementsByClassName(className);
-				for(var i = 0, length = elements.length; i < length; i++) {
-					var currHref = elements[i].href;
-					if(order=='desc'){ 
-						var chg = currHref.replace('desc', 'asc');
-						elements[i].href = chg;
-					}
-					if(order=='asc'){ 
-						var chg = currHref.replace('asc', 'desc');
-						elements[i].href = chg;
-					}
-				}
-			};
-			function readableFileSize(size) {
-				var units = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
-				var i = 0;
-				while(size >= 1024) {
-					size /= 1024;
-					++i;
-				}
-				return parseFloat(size).toFixed(2) + ' ' + units[i];
-			}
-
-			function changeSize() {
-				var sizes = document.getElementsByTagName("size");
-
-				for (var i = 0; i < sizes.length; i++) {
-					humanSize = readableFileSize(sizes[i].innerHTML);
-					sizes[i].innerHTML = humanSize
-				}
-			}
-		</script>
+						</tbody>
+					</table>
+				</div>
+			</main>
+		</div>
+		<script src="/static/app.js"></script>
 	</body>
 </html>

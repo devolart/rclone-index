@@ -8,8 +8,9 @@ Deploy rclone index for your cloud storages easily
 
 ## Features
 - [x] Multiple rclone remotes in one index
-- [x] No colons in URL (following [MLTB](https://github.com/anasty17/mirror-leech-telegram-bot) method), unlike the default behavior of other similar repos 
-- [x] Light mode and dark mode
+- [x] No colons in URL (following [MLTB](https://github.com/anasty17/mirror-leech-telegram-bot) method), unlike the default behavior of other similar repos
+- [x] Modern, responsive UI with multiple themes (Dark, Light, Blue)
+- [x] User-specific theme settings that are saved in the browser
 - [x] Easy deployment
 - [x] Docker and VPS supported (even for no-root environment)
 - [x] Many PaaS platforms supported (some are even free)
@@ -46,15 +47,17 @@ Username for authentication (leave blank for no auth). It must be paired with `P
 
 Password for authentication (leave blank for no auth). It must be paired with `USERNAME` variable if you want to add authentication.
 
-6. `DARK_MODE` (Optional)
+## Customization
 
-Set this to `true` to enable dark mode. Leaving this empty or any value other than `true` will set it to light mode. You can also edit the dark mode's template at `templates/dark.html`. Thanks to [@culturecloud](https://github.com/culturecloud) for the dark mode template (I couldn't find it anywhere else)
+### Themes
+This rclone index comes with a modern, responsive UI and supports multiple themes. You can switch between themes by clicking the settings icon in the top-right corner of the page.
 
-Light mode (default):
-![Light mode](https://cdn.glitch.global/5816d3a4-231f-47f8-8ba8-ef67edfc0885/light%20index.png)
+The available themes are:
+- **Dark:** The default theme.
+- **Light:** A clean, light-colored theme.
+- **Blue:** A dark theme with a blue color scheme.
 
-Dark mode:
-![Dark mode](https://cdn.glitch.global/5816d3a4-231f-47f8-8ba8-ef67edfc0885/dark%20index.png)
+Your theme preference is saved in your browser's local storage, so it will be remembered on your next visit.
 
 ## Deployments
 ### Docker
